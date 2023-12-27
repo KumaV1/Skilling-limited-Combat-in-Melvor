@@ -1,4 +1,4 @@
 # Functionality
 As long as this mod is enabled, combat skills (not combat level mind you) cannot exceed the level of your **lowest** non-combat skill.
 
-Already existing combat skill levels are not reset, though. So you can add additional skill mods no problem, though you will have to level that one up before you can get any further gains in the combat skills.
+**IMPORTANT**: This mod uses the same functionality as the base game itself. Therefore, if you add a non-combat skill later into your character, then you **mustn't** do any combat until that new skill has been levelled! **Otherwise, upon gaining xp in a combat skill, said skill's xp will end up getting reduced**!
