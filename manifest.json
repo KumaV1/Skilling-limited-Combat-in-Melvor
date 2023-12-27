@@ -1,0 +1,5 @@
+{
+  "namespace": "skillingLimitedCombat",
+  "icon": "assets/skillingLimitedCombat/Logo.png",
+  "setup": "setup.mjs"
+}
