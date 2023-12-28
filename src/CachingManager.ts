@@ -1,4 +1,7 @@
 export class CachingManager {
+    /** Hard level cap, that can never be increased, based on Gamemode settings and expansion entitlements */
+    private static _gameLevelHardCap = 120; // avoid resetting anything just in case
+
     private static _lowestSkill = {
         skillId: "UNSET",
         level: 120 // avoid resetting anyone, if this is ever wrongfully not-updated
@@ -29,7 +32,17 @@ export class CachingManager {
     public static initValue(ctx: Modding.ModContext): void {
         ctx.onCharacterLoaded(() => {
             CachingManager._lowestSkill = CachingManager.getLowestSkill();
+            CachingManager._gameLevelHardCap = game.currentGamemode.overrideLevelCap !== undefined
+                ? game.currentGamemode.overrideLevelCap
+                : cloudManager.hasTotHEntitlement
+                    ? 120
+                    : 99;
         });
+    }
+
+    /** Whether all skills have been maxed */
+    public static allSkillsMaxed(): boolean {
+        return CachingManager._lowestSkill.level >= CachingManager._gameLevelHardCap;
     }
 
     /**
