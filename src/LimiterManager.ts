@@ -11,8 +11,7 @@ export class LimiterManager {
             }
 
             // Get lowest non-combat skill level
-            const level: number = 1;
-            const xpCap: number = exp.level_to_xp(level + 1) - 1;
+            const xpCap: number = CachingManager.getXpCap();
             if (this._xp > xpCap) {
                 this._xp = this.id === Constants.HITPOINTS_SKILL_ID
                     ? Math.max(xpCap, Constants.HITPOINTS_XP_CAP)
