@@ -8,6 +8,8 @@ export async function setup(ctx: Modding.ModContext) {
     CachingManager.initValue(ctx);
     LimiterManager.patch(ctx);
 
-    // TODOs:
-    // * Add a message like with adventure mode, but in the combat UI, that will inform about at least one skill having reached their cap
+    ctx.api({
+        getXpCap: () => CachingManager.getXpCap(),
+        getLowestSkill: () => CachingManager.getLowestSkill()
+    });
 }

@@ -14,9 +14,14 @@ export class CachingManager {
                 return;
             }
 
-            // Otherwise we have to check all skills
-            // and possibly update what the currently lowest non - combat skill level is
+            // Otherwise we have to check all skills, possibly update what the currently lowest non-combat skill level is
+            // Also hide the potentially displayed xp cap notice
             CachingManager._lowestSkill = CachingManager.getLowestSkill();
+
+            const noticeElement = document.getElementById('skill-capped-combat-xp-notice');
+            if (noticeElement !== undefined && noticeElement !== null) {
+                hideElement(noticeElement);
+            }
         });
     }
 
