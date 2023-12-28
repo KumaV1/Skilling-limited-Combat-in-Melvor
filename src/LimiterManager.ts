@@ -17,9 +17,12 @@ export class LimiterManager {
                     ? Math.max(xpCap, Constants.HITPOINTS_XP_CAP)
                     : xpCap;
                 this.renderQueue.xpCap = true;
-                const noticeElement = document.getElementById('skill-capped-combat-xp-notice');
-                if (noticeElement !== undefined && noticeElement !== null) {
-                    showElement(noticeElement);
+
+                if (this.level < this.levelCap) {
+                    const noticeElement = document.getElementById('skill-capped-combat-xp-notice');
+                    if (noticeElement !== undefined && noticeElement !== null) {
+                        showElement(noticeElement);
+                    }
                 }
             }
         });
@@ -33,7 +36,7 @@ export class LimiterManager {
                 noticeElement.appendChild(createElement('span', { text: getLangString(`${Constants.MOD_NAMESPACE}_Skill_Capped_Combat_Exp_Notice`) }));
 
                 const menuElement = document.getElementById('combat-top-menu');
-                const parentElement = menuElement?.querySelector('div.col-12:not(#combat-event-menu) div.col-12.pointer-enabled'); //('col-12')[1]; // 0 is the offline combat alert
+                const parentElement = menuElement?.querySelector('div.col-12:not(#combat-event-menu) div.col-12.pointer-enabled');
                 const headerElement = parentElement?.querySelector("h5");
                 if (headerElement === undefined || headerElement === null) {
                     console.log("Failed to create skilling-limited combat xp cap notice, as the location to place it couldn't be found");
@@ -47,7 +50,7 @@ export class LimiterManager {
                     return !skill.isCombat;
                 });
                 const xpCap = CachingManager.getXpCap();
-                if (combatSkills.some(s => s.xp >= xpCap)) {
+                if (combatSkills.some(s => s.xp >= xpCap && s.level < s.levelCap)) {
                     showElement(noticeElement);
                 }
 
