@@ -45,10 +45,6 @@ export class CachingManager {
      * @returns
      */
     public static getLowestSkill(): { skillId: string; level: number; } {
-        // Just get a list of all skills,
-        // filter out the combat skills,
-        // and then do an order by or something to get the lowest level among them
-
         const nonCombatSkills = game.skills.filter((skill) => {
             return !skill.isCombat;
         });

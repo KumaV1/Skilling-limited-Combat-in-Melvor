@@ -2,9 +2,6 @@ import { CachingManager } from "./CachingManager";
 import { Constants } from "./Constants";
 
 export class LimiterManager {
-    // Toggles/Patches for xp limitation and corresponding notification in UI
-    // ^ likely render html element on load, and just toggle visibility if necessary?
-
     public static patch(ctx: Modding.ModContext) {
         // @ts-ignore: You can patch base class no problem
         ctx.patch(Skill, "capXPForGamemode").after(function (returnValue: void) {
@@ -34,7 +31,7 @@ export class LimiterManager {
                 // Create element
                 const noticeElement: HTMLElement = createElement("span", { id: 'skill-capped-combat-xp-notice', classList: ['d-none', 'text-danger', 'font-size-sm', 'pl-3'] });
                 noticeElement.appendChild(createElement('i', { classList: ['fa', 'fa-info-circle', 'mr-1'] }));
-                noticeElement.appendChild(createElement('span', { text: 'Skill Level Limit reached in at least one Combat Skill. Level up your non-Combat Skills to continue earning Combat XP in those Skills.' }));// = '<i class="fa fa-info-circle mr-1"></i> Skill Level Limit reached in at least one Combat Skill. Level up your non-Combat Skills to continue earning Combat XP in those Skills.';
+                noticeElement.appendChild(createElement('span', { text: getLangString(`${Constants.MOD_NAMESPACE}_Skill_Capped_Combat_Exp_Notice`) }));
 
                 const menuElement = document.getElementById('combat-top-menu');
                 const parentElement = menuElement?.querySelector('div.col-12:not(#combat-event-menu) div.col-12.pointer-enabled'); //('col-12')[1]; // 0 is the offline combat alert
