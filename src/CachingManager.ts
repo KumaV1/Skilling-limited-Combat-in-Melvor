@@ -4,7 +4,8 @@ export class CachingManager {
 
     private static _lowestSkill = {
         skillId: "UNSET",
-        level: 120 // avoid resetting anyone, if this is ever wrongfully not-updated
+        level: 120, // avoid resetting anyone, if this is ever wrongfully not-updated
+        xpCap: exp.level_to_xp(120 + 1) - 1 // avoid resetting anyone, if this is ever wrongfully not-updated
     };
 
     /** Patches methods in order to update info about current lowest non-combat skill whenever necessary */
@@ -50,14 +51,14 @@ export class CachingManager {
      * @returns
      */
     public static getXpCap(): number {
-        return exp.level_to_xp(CachingManager._lowestSkill.level + 1) - 1;
+        return CachingManager._lowestSkill.xpCap;
     }
 
     /**
      * Retrieves the current lowest non-combat skill level
      * @returns
      */
-    public static getLowestSkill(): { skillId: string; level: number; } {
+    public static getLowestSkill(): { skillId: string; level: number; xpCap: number; } {
         const nonCombatSkills = game.skills.filter((skill) => {
             return !skill.isCombat;
         });
@@ -65,7 +66,8 @@ export class CachingManager {
 
         return {
             skillId: lowestSkill.id,
-            level: lowestSkill.level
+            level: lowestSkill.level,
+            xpCap: exp.level_to_xp(lowestSkill.level + 1) - 1
         };
     }
 }
