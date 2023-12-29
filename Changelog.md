@@ -9,4 +9,4 @@
 * Won't cap your xp anymore, upon reaching the highest of heights possible (gamemode/expansion level cap) 
 
 ## v1.0.0
-* Initial implementation*
+* Initial implementation
