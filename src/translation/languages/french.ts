@@ -1,3 +1,3 @@
-export const fr = {
-    Skill_Capped_Combat_Exp_Notice: "Level Limit reached in at least one Combat Skill, which also hasn't reached its (current) level cap. Level up your non-Combat Skills to continue earning Combat XP in those Skills."
+﻿export const fr = {
+    Skill_Capped_Combat_Exp_Notice: "Limite de niveau atteinte dans au moins une compétence de combat, qui n'a pas atteint son plafond de niveau (actuel). Augmentez le niveau de vos compétences non combattantes pour continuer à gagner de l'XP de combat dans ces compétences."
 };
