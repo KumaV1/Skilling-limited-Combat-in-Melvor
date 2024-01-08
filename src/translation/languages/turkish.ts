@@ -1,3 +1,3 @@
-export const tr = {
-    Skill_Capped_Combat_Exp_Notice: "Level Limit reached in at least one Combat Skill, which also hasn't reached its (current) level cap. Level up your non-Combat Skills to continue earning Combat XP in those Skills."
+﻿export const tr = {
+    Skill_Capped_Combat_Exp_Notice: "(Mevcut) seviye sınırına ulaşmamış en az bir Savaş Becerisinde Seviye Sınırına ulaşıldı. Bu Becerilerde Savaş XP'si kazanmaya devam etmek için Savaş Dışı Becerilerinizin seviyesini yükseltin."
 };

@@ -1,3 +1,3 @@
 export const ru = {
-    Skill_Capped_Combat_Exp_Notice: "Level Limit reached in at least one Combat Skill, which also hasn't reached its (current) level cap. Level up your non-Combat Skills to continue earning Combat XP in those Skills."
+    Skill_Capped_Combat_Exp_Notice: "„D„€„ƒ„„„y„s„~„…„„ „„‚„u„t„u„| „…„‚„€„r„~„‘ „‡„€„„„‘ „q„ „r „€„t„~„€„} „q„€„u„r„€„} „~„p„r„„{„u, „{„€„„„€„‚„„z „u„‹„u „~„u „t„€„ƒ„„„y„s „ƒ„r„€„u„s„€ („„„u„{„…„‹„u„s„€) „„‚„u„t„u„|„p „…„‚„€„r„~„‘. „P„€„r„„ƒ„„„„u „…„‚„€„r„u„~„ „ƒ„r„€„y„‡ „~„u„q„€„u„r„„‡ „…„}„u„~„y„z, „‰„„„€„q„ „„‚„€„t„€„|„w„y„„„ „x„p„‚„p„q„p„„„„r„p„„„ „q„€„u„r„„u XP „r „„„„y„‡ „…„}„u„~„y„‘„‡."
 };
