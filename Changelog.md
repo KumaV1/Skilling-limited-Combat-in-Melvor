@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.3
+* Added machine translation for all languages other than english and german
+
 ## v1.0.2
 * Xp Cap is now also cached, slightly optimizing performance
 
