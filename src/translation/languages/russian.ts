@@ -1,3 +1,3 @@
-export const ru = {
-    Skill_Capped_Combat_Exp_Notice: "„D„€„ƒ„„„y„s„~„…„„ „„‚„u„t„u„| „…„‚„€„r„~„‘ „‡„€„„„‘ „q„ „r „€„t„~„€„} „q„€„u„r„€„} „~„p„r„„{„u, „{„€„„„€„‚„„z „u„‹„u „~„u „t„€„ƒ„„„y„s „ƒ„r„€„u„s„€ („„„u„{„…„‹„u„s„€) „„‚„u„t„u„|„p „…„‚„€„r„~„‘. „P„€„r„„ƒ„Ž„„„u „…„‚„€„r„u„~„Ž „ƒ„r„€„y„‡ „~„u„q„€„u„r„„‡ „…„}„u„~„y„z, „‰„„„€„q„ „„‚„€„t„€„|„w„y„„„Ž „x„p„‚„p„q„p„„„„r„p„„„Ž „q„€„u„r„„u XP „r „„„„y„‡ „…„}„u„~„y„‘„‡."
+ï»¿export const ru = {
+    Skill_Capped_Combat_Exp_Notice: "Ð”Ð¾ÑÑ‚Ð¸Ð³Ð½ÑƒÑ‚ Ð¿Ñ€ÐµÐ´ÐµÐ» ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ…Ð¾Ñ‚Ñ Ð±Ñ‹ Ð² Ð¾Ð´Ð½Ð¾Ð¼ Ð±Ð¾ÐµÐ²Ð¾Ð¼ Ð½Ð°Ð²Ñ‹ÐºÐµ, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ ÐµÑ‰Ðµ Ð½Ðµ Ð´Ð¾ÑÑ‚Ð¸Ð³ ÑÐ²Ð¾ÐµÐ³Ð¾ (Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾) Ð¿Ñ€ÐµÐ´ÐµÐ»Ð° ÑƒÑ€Ð¾Ð²Ð½Ñ. ÐŸÐ¾Ð²Ñ‹ÑÑŒÑ‚Ðµ ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ ÑÐ²Ð¾Ð¸Ñ… Ð½ÐµÐ±Ð¾ÐµÐ²Ñ‹Ñ… ÑƒÐ¼ÐµÐ½Ð¸Ð¹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ Ð·Ð°Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ Ð±Ð¾ÐµÐ²Ñ‹Ðµ XP Ð² ÑÑ‚Ð¸Ñ… ÑƒÐ¼ÐµÐ½Ð¸ÑÑ…."
 };
