@@ -1,6 +1,6 @@
 {
   "name": "skilling-limited-combat-in-melvor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "MelvorIdle mod, forcing combat skill levels to not be able to exceed non-combat skill levels",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

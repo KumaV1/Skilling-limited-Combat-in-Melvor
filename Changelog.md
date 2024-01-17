@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.4
+* Fixing file encoding for certain languages
+
 ## v1.0.3
 * Added machine translation for all languages other than english and german
 
