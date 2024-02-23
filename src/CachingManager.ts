@@ -1,3 +1,4 @@
+import { CombatAreasUIManager } from "./CombatAreasUIManager";
 import { SettingsManager } from "./SettingsManager";
 
 export class CachingManager {
@@ -12,28 +13,31 @@ export class CachingManager {
 
     /** Patches methods in order to update info about current lowest non-combat skill whenever necessary */
     public static patch(ctx: Modding.ModContext): void {
-    // @ts-ignore: You can patch base class no problem
+        // @ts-ignore: You can patch base class no problem
         ctx.patch(Skill, "onLevelUp").after(function (returnValue: void, oldLevel: number, newLevel: number) {
-            // If the levelled skill is NOT the current lowest skill,
-            // then we don't actually need to do anything
-            if (this.id !== CachingManager._lowestSkill.skillId) {
-                return;
+            // If the levelled skill is the current lowest skill,
+            // then we have to re-check what the current lowest skill is
+            if (this.id === CachingManager._lowestSkill.skillId) {
+                CachingManager.updateLowestSkill();
             }
 
-            // Otherwise we have to check all skills, possibly update what the currently lowest non-combat skill level is
-            // Also hide the potentially displayed xp cap notice
+            // Re-check, whether a combat skill reached the cap
+            CombatAreasUIManager.evaluateSkillCappedCombatExpNoticeDisplay();
+        });
+
+        // @ts-ignore: You can patch base class no problem
+        ctx.patch(Skill, 'setUnlock').after(function (returnValue: void) {
             CachingManager.updateLowestSkill();
-
-            const noticeElement = document.getElementById('skill-capped-combat-xp-notice');
-            if (noticeElement !== undefined && noticeElement !== null) {
-                hideElement(noticeElement);
-            }
+            CombatAreasUIManager.evaluateSkillCappedCombatExpNoticeDisplay();
         });
     }
 
-    /** Update the cached value for that the lowest skill currently is */
-    public static updateLowestSkill(): void {
-        CachingManager._lowestSkill = CachingManager.getLowestSkill();
+    /**
+     * Update the cached value for that the lowest skill currently is
+     * @param ignoreLockedSkills - whether to ignore locked skills. If not provided, the setting will be read
+     */
+    public static updateLowestSkill(ignoreLockedSkills?: boolean | undefined): void {
+        CachingManager._lowestSkill = CachingManager.getLowestSkill(ignoreLockedSkills);
     }
 
     /** On character load, set initial value about lowest non-combat skill */
@@ -62,14 +66,32 @@ export class CachingManager {
     }
 
     /**
-     * Retrieves the current lowest non-combat skill level
+     * Whether any combat skill is at or above the cap
      * @returns
      */
-    public static getLowestSkill(): { skillId: string; level: number; xpCap: number; } {
+    public static anyCombatSkillReachedCap(): boolean {
+        const combatSkills = game.skills.filter((skill) => {
+            return skill.isCombat
+        });
+        const xpCap: number = CachingManager.getXpCap();
+
+        return combatSkills.some((cSkill) => cSkill.xp >= xpCap);
+    }
+
+    /**
+     * Retrieves the current lowest non-combat skill level
+     * @param ignoreLockedSkills - whether to ignore locked skills. If not provided, the setting will be read
+     * @returns
+     */
+    public static getLowestSkill(ignoreLockedSkills?: boolean | undefined): { skillId: string; level: number; xpCap: number; } {
+        if (ignoreLockedSkills === undefined) {
+            ignoreLockedSkills = SettingsManager.getIgnoreLockedSkills();
+        }
+
         const nonCombatSkills = game.skills.filter((skill) => {
             return !skill.isCombat
                 && (skill.isUnlocked
-                    || !SettingsManager.getIgnoreLockedSkills());
+                    || !ignoreLockedSkills);
         });
         const lowestSkill = nonCombatSkills.reduce((acc, current) => current.level < acc.level ? current : acc, nonCombatSkills[0] || undefined);
 

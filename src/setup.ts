@@ -1,4 +1,5 @@
 import { CachingManager } from './CachingManager';
+import { CombatAreasUIManager } from './CombatAreasUIManager';
 import { LimiterManager } from './LimiterManager';
 import { ModContextMemoizer } from './ModContextMemoizer';
 import { SettingsManager } from './SettingsManager';
@@ -12,6 +13,7 @@ export async function setup(ctx: Modding.ModContext) {
     CachingManager.patch(ctx);
     CachingManager.initValue(ctx);
     LimiterManager.patch(ctx);
+    CombatAreasUIManager.initSkillCappedCombatExpNotice(ctx);
 
     ctx.api({
         getXpCap: () => CachingManager.getXpCap(),

@@ -1,4 +1,5 @@
 import { CachingManager } from "./CachingManager";
+import { CombatAreasUIManager } from "./CombatAreasUIManager";
 import { Constants } from "./Constants";
 import { ModContextMemoizer } from "./ModContextMemoizer";
 
@@ -12,7 +13,8 @@ export class SettingsManager {
                 hint: getLangString(`${Constants.MOD_NAMESPACE}_Settings_Setting_Hint_Ignore_Locked_Skills`),
                 default: false,
                 onChange(value: boolean, previousValue: boolean): void {
-                    CachingManager.updateLowestSkill();
+                    CachingManager.updateLowestSkill(value);
+                    CombatAreasUIManager.evaluateSkillCappedCombatExpNoticeDisplay();
                 }
             } as Modding.Settings.SwitchConfig
         ]);
