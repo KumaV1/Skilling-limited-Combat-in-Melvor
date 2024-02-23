@@ -1,3 +1,5 @@
+import { SettingsManager } from "./SettingsManager";
+
 export class CachingManager {
     /** Hard level cap, that can never be increased, based on Gamemode settings and expansion entitlements */
     private static _gameLevelHardCap = 120; // avoid resetting anything just in case
@@ -20,7 +22,7 @@ export class CachingManager {
 
             // Otherwise we have to check all skills, possibly update what the currently lowest non-combat skill level is
             // Also hide the potentially displayed xp cap notice
-            CachingManager._lowestSkill = CachingManager.getLowestSkill();
+            CachingManager.updateLowestSkill();
 
             const noticeElement = document.getElementById('skill-capped-combat-xp-notice');
             if (noticeElement !== undefined && noticeElement !== null) {
@@ -29,10 +31,15 @@ export class CachingManager {
         });
     }
 
+    /** Update the cached value for that the lowest skill currently is */
+    public static updateLowestSkill(): void {
+        CachingManager._lowestSkill = CachingManager.getLowestSkill();
+    }
+
     /** On character load, set initial value about lowest non-combat skill */
     public static initValue(ctx: Modding.ModContext): void {
         ctx.onCharacterLoaded(() => {
-            CachingManager._lowestSkill = CachingManager.getLowestSkill();
+            CachingManager.updateLowestSkill();
             CachingManager._gameLevelHardCap = game.currentGamemode.overrideLevelCap !== undefined
                 ? game.currentGamemode.overrideLevelCap
                 : cloudManager.hasTotHEntitlement
@@ -60,7 +67,9 @@ export class CachingManager {
      */
     public static getLowestSkill(): { skillId: string; level: number; xpCap: number; } {
         const nonCombatSkills = game.skills.filter((skill) => {
-            return !skill.isCombat;
+            return !skill.isCombat
+                && (skill.isUnlocked
+                    || !SettingsManager.getIgnoreLockedSkills());
         });
         const lowestSkill = nonCombatSkills.reduce((acc, current) => current.level < acc.level ? current : acc, nonCombatSkills[0] || undefined);
 
