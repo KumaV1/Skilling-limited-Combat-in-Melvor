@@ -1,7 +1,12 @@
 # Changelog
 
+## v1.0.5
+* Added setting to toggle whether locked skills limit your combat skill
+levels
+* Improvements to xp cap notice
+
 ## v1.0.4
-* Fixing file encoding for certain languages
+* Fixed file encoding for certain languages
 
 ## v1.0.3
 * Added machine translation for all languages other than english and german
