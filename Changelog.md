@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.6
+* Fixed cap notice appearing when you are maxed
+
+## v1.0.5
+* Added setting to toggle whether locked skills limit your combat skill levels
+* Improved xp cap notice
+ 
 ## v1.0.4
 * Fixing file encoding for certain languages
 
