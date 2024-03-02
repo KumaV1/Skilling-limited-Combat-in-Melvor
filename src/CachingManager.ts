@@ -70,6 +70,10 @@ export class CachingManager {
      * @returns
      */
     public static anyCombatSkillReachedCap(): boolean {
+        if (CachingManager.allSkillsMaxed()) {
+            return false;
+        }
+
         const combatSkills = game.skills.filter((skill) => {
             return skill.isCombat
         });
